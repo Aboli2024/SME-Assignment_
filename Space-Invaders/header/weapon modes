@@ -1,0 +1,115 @@
+// Game.h
+#pragma once
+
+#include <vector>
+#include "PlayerShip.h"
+#include "EnemyShip.h"
+
+class Game {
+private:
+    PlayerShip player;
+    std::vector<EnemyShip> enemies;
+    int score = 0;
+    int difficultyLevel = 1;
+
+public:
+    void update();
+    void render();
+    void handleInput();
+    void increaseDifficulty();
+    void updateEnemies();
+    void updateScore(int points);
+    int getScore() const;
+};
+
+// PlayerShip.h
+#pragma once
+
+#include "Bullet.h"
+
+class PlayerShip {
+private:
+    WeaponMode currentWeaponMode = WeaponMode::Standard;
+    // other member variables
+
+public:
+    void switchWeaponMode(WeaponMode mode);
+    void fireBullet();
+};
+
+// EnemyShip.h
+#pragma once
+
+#include "Bullet.h"
+
+class EnemyShip {
+public:
+    void fireBullet();
+};
+
+// Bullet.h
+#pragma once
+
+enum class WeaponMode { Standard, SpreadShot, RapidFire, Explosive };
+
+class Bullet {
+private:
+    float posX;
+    float posY;
+    // other member variables
+
+public:
+    Bullet(float x, float y, BulletType type);
+    void update();
+};
+
+// Game.cpp
+#include "Game.h"
+
+void Game::update() {
+    // Update game state
+    player.update();
+    updateEnemies();
+}
+
+void Game::render() {
+    // Render game objects
+}
+
+void Game::handleInput() {
+    // Handle player input
+}
+
+void Game::increaseDifficulty() {
+    // Increase game difficulty
+}
+
+void Game::updateEnemies() {
+    // Update enemy behavior based on difficulty
+}
+
+void Game::updateScore(int points) {
+    score += points;
+}
+
+int Game::getScore() const {
+    return score;
+}
+
+// PlayerShip.cpp
+#include "PlayerShip.h"
+
+void PlayerShip::switchWeaponMode(WeaponMode mode) {
+    currentWeaponMode = mode;
+}
+
+void PlayerShip::fireBullet() {
+    // Fire bullets based on current weapon mode
+}
+
+// EnemyShip.cpp
+#include "EnemyShip.h"
+
+void EnemyShip::fireBullet() {
+    // Fire bullets based on enemy behavior
+}
